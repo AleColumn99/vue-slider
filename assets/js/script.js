@@ -3,6 +3,7 @@ const app = new Vue ({
   el: '#app',
   data: {
 
+    isPlaying: false,
     imgCounter: 0,
     photos: [
       'assets/img/1.jpg',
@@ -13,6 +14,12 @@ const app = new Vue ({
       'assets/img/6.jpg'
     ]
 
+  },
+  mounted() {
+    this.timer = setInterval(() => {
+      this.nextPhoto();
+    }, 3000);
+    this.isPlaying = true;
   },
   methods: {
 
@@ -25,6 +32,18 @@ const app = new Vue ({
       this.imgCounter--;
       if (this.imgCounter < 0) this.imgCounter = this.photos.length - 1;
     },
+
+    startSlide() {
+      this.isPlaying = true;
+      this.timer = setInterval(() => {
+        this.nextPhoto();
+      }, 3000);
+    },
+
+    stopSlide() {
+      clearInterval(this.timer);
+      this.isPlaying = false;
+    }
 
   }
 

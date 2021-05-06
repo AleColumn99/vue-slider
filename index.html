@@ -16,7 +16,7 @@
 
     <link rel="stylesheet" href="assets/css/style.css">
 
-    <title>Document</title>
+    <title>F1 photo gallery</title>
 
   </head>
 
@@ -26,28 +26,39 @@
 
       <div class="img-gallery">
 
-        <div class="prev" @click="prevPhoto">
-          <i class="fas fa-angle-left"></i>
-        </div>
-          <div class="images">
-            <img :src="photos[imgCounter]">
+        <div class="images">
+
+          <div class="prev" @click="prevPhoto">
+            <i class="fas fa-angle-left"></i>
           </div>
 
-        <div class="nav">
-          <i
-          v-for="(photo, index) in photos"
-          :class="(index === imgCounter) ? 'active' : null"
-          class="fas fa-circle"
-          @click="imgCounter = index"
-          ></i>
-        </div>
+          <img :src="photos[imgCounter]">
 
-        <div class="next" @click="nextPhoto">
-          <i class="fas fa-angle-right"></i>
-        </div>
-      </div>
+          <div class="nav">
   
-    </div>
+            <i
+            v-for="(photo, index) in photos"
+            :class="(index === imgCounter) ? 'active' : null"
+            class="fas fa-circle"
+            @click="imgCounter = index"
+            ></i>
+  
+          </div>
+
+          <button class="stop" @click="stopSlide" v-if="isPlaying">
+            STOP
+          </button>
+          <button class="start" @click="startSlide" v-if="!isPlaying">
+            START
+          </button>
+
+          <div class="next" @click="nextPhoto">
+            <i class="fas fa-angle-right"></i>
+          </div>
+          
+        </div>
+  
+      </div>
     
     <!-- JQUERY E JAVASCRIPT -->
 
